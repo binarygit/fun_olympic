@@ -1,0 +1,22 @@
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav {
+  width: 13%;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+}
+
+footer { 
+  padding: 5px;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
