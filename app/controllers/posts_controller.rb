@@ -52,6 +52,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1 or /posts/1.json
   def destroy
     @post.video.purge
+    @post.thumbnail.purge
     @post.destroy
 
     respond_to do |format|
@@ -68,7 +69,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :description, :video)
+      params.require(:post).permit(:title, :description, :video, :thumbnail)
     end
 
     def author?

@@ -119,3 +119,11 @@ input[type="submit"]:disabled {
   background: orange;
   text-align: center;
 }
+
+a strong {
+  color: black;
+}
+
+a img:hover {
+  text-decoration: none;
+}
