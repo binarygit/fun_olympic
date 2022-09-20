@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
-  before_action :author?, only: %i[destroy, update]
+  before_action :author?, only: %i[destroy update]
 
   # GET /posts or /posts.json
   def index
@@ -51,6 +51,7 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
+    @post.video.purge
     @post.destroy
 
     respond_to do |format|
@@ -67,7 +68,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :description)
+      params.require(:post).permit(:title, :description, :video)
     end
 
     def author?

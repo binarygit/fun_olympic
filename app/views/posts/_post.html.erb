@@ -14,4 +14,9 @@
     <%= post.user.email %>
   </p>
 
+  <p>
+    <strong>Video:</strong>
+    <%= video_tag url_for(post.video), controls: true %>
+  </p>
+
 </div>
