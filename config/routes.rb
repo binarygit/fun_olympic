@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :posts
+  resources :likes, only: [:create]
+  delete '/likes', to: 'likes#destroy'
   devise_for :users
   get '/home', to: 'static_pages#home'
 

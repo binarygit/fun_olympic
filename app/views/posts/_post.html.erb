@@ -10,4 +10,13 @@
     <strong>Description:</strong>
     <%= post.description %>
   </p>
+
+  <div>
+    <% if post.likes.where(user_id: current_user.id).empty? %>
+    <%= button_to 'Like', likes_url, method: 'post', params: { post_id: post.id } %>
+  <% else %>
+    <%= button_to 'Unlike', likes_url, method: 'delete', params: { post_id: post.id } %>
+  <% end %>
+  <p><strong>Likes count:</strong> <%= post.likes.count %></p>
+  </div>
 </div>
