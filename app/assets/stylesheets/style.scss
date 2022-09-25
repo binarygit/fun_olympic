@@ -1,3 +1,4 @@
+/*
 header {
   display: flex;
   justify-content: space-between;
@@ -149,3 +150,19 @@ body.dark-theme a {
 .user_card {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
 }
+*/
+
+.form {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.post {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
