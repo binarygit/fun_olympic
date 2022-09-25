@@ -60,7 +60,10 @@
                 <%= link_to 'All Videos', posts_url, class: 'dropdown-item' %>
               </li>
               <li>
-
+                <%= link_to 'Edit Profile', edit_user_url(current_user), class: 'dropdown-item' %>
+              </li>
+              <li>
+                <%= link_to 'Profile', user_url(current_user), class: 'dropdown-item' %>
               </li>
             <% else %>
               <li><%= link_to 'Login', new_user_session_url, class: 'dropdown-item' %></li>

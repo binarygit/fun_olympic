@@ -1,0 +1,8 @@
+<div class='container p-2'>
+  <h2>User Profile</h2>
+  <ul class='list-group'>
+    <% User.attribute_names.each do |name| %>
+      <li class="list-group-item"><%= name %>: <%= @user["#{name}"] %></li>
+    <% end %>
+  </div>
+</div>

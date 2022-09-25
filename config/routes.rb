@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
 
   devise_for :users
+  resources :users, only: [:edit, :update, :show]
   get '/home', to: 'static_pages#home'
   get '/settings', to: 'static_pages#settings'
 
