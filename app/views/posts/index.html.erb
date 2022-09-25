@@ -4,10 +4,13 @@
 
 <div id="posts">
   <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
+    <div id="<%= dom_id post %>" class='post'>
+      <%= video_tag url_for(post.video), controls: true %>
+      <p><strong>Posted by:</strong> <%= post.user.email %></p>
+      <p>Likes(likes_count)</p>
+      <p>Comments(comments_count)</p>
+      <%= link_to 'View Video', post_path(post) %>
+    </div>
   <% end %>
 </div>
 

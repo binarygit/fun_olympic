@@ -1,0 +1,30 @@
+<header>
+  <div id="logo">
+    <img src="" alt="logo">
+  </div>
+  <div id="search_bar">
+    <input type="text" placeholder="Search Here...">
+    <%= image_tag 'research.png' %>
+  </div>
+  <nav>
+    <ul>
+      <% if current_user %>
+        <li>
+          <%= link_to 'All Videos', posts_url %>
+        </li>
+        <li>
+          <%= button_to(
+            "Log Out",
+            destroy_user_session_path,
+            method: :delete
+          ) %>
+        </li>
+      <% else %>
+        <li id="login_link">
+          <%= link_to 'Login', new_user_session_url %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
+
