@@ -37,7 +37,9 @@
 
 <nav class="navbar navbar-expand-lg" id='navbar'>
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="<%= root_url %>">
+      <%= image_tag 'fun' %>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -49,14 +51,6 @@
           <ul class="dropdown-menu">
             <% if current_user %>
               <li>
-                <%= button_to(
-                  "Log Out",
-                  destroy_user_session_path,
-                  method: :delete,
-                  class: 'dropdown-item'
-                ) %>
-              </li>
-              <li>
                 <%= link_to 'All Videos', posts_url, class: 'dropdown-item' %>
               </li>
               <li>
@@ -64,6 +58,14 @@
               </li>
               <li>
                 <%= link_to 'Profile', user_url(current_user), class: 'dropdown-item' %>
+              </li>
+              <li>
+                <%= button_to(
+                  "Log Out",
+                  destroy_user_session_path,
+                  method: :delete,
+                  class: 'dropdown-item'
+                ) %>
               </li>
             <% else %>
               <li><%= link_to 'Login', new_user_session_url, class: 'dropdown-item' %></li>
@@ -74,4 +76,8 @@
       </ul>
     </div>
   </div>
+  <form class="d-flex" role="search">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-dark" type="submit">Search</button>
+  </form>
 </nav>
