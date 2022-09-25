@@ -1,20 +1,26 @@
-<h1>Settings</h1>
+<div class="container">
+  <h1>Settings</h1>
 
-<div class='user_list'>
-  <h2>List of Users</h2>
-  <ul>
-    <% User.all.each do |user| %>
-      <li class='user_card'>
-        <p><%= user.full_name %></p>
-        <p><%= user.email %></p>
-      </li>
-    <% end %>
-  </ul>
-</div>
+  <div class='user_list'>
+    <h2>List of Users</h2>
+    <ol class="list-group list-group-numbered">
+      <% User.all.each do |user| %>
+        <li class='user_card list-group-item'>
+          <%= link_to user.full_name, user_url(user) %>
+          <% unless user.admin %>
+            <%= button_to "Make Admin", user_path(user), method: "patch", params: { user: { admin: true } }, class: 'btn btn-dark' %>
+          <% end %>
+        </li>
+      <% end %>
+    </ol>
+  </div>
 
-<div>
-  <h2>Dark Mode</h2>
-  <li data-controller="dark-mode">
+  <!--
+    <div>
+    <h2>Dark Mode</h2>
+    <li data-controller="dark-mode">
     <button data-action="dark-mode#toggle">Toggle Dark Mode</button>
-  </li>
+    </li>
+    </div>
+  -->
 </div>

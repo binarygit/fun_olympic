@@ -11,9 +11,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to current_user, notice: "User successfully updated"
+      redirect_back_or_to @user, notice: "User successfully updated"
     else
       flash.now.alert = 'Could not update user.'
       render :edit
@@ -23,6 +23,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:full_name, :username, :phone_number, :country_id, :password, :password_confirmation)
+    params.require(:user).permit(:full_name, :username, :phone_number, :country_id, :password, :password_confirmation, :admin)
   end
 end
