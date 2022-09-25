@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_20_095143) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_20_090424) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_20_095143) do
   end
 
 # Could not dump table "posts" because of following StandardError
-#   Unknown type 'attachment' for column 'video'
+#   Unknown type '' for column 'video'
 
   create_table "users", force: :cascade do |t|
     t.string "full_name"
