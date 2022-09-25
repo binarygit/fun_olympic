@@ -1,52 +1,74 @@
-<div id="<%= dom_id post %>" class='show_post'>
-  <div class="video_container">
-    <%= video_tag url_for(post.video), controls: true %>
-  </div>
-  <div class="misc_container">
-    <div>
-      <p>
-        <strong>Title:</strong>
-        <%= post.title %>
-      </p>
-      <p>
-        <strong>Description:</strong>
-        <%= post.description %>
-      </p>
-      
-      <div>
-        <% if post.likes.where(user_id: current_user.id).empty? %>
-        <%= button_to 'Like', likes_url, method: 'post', params: { post_id: post.id } %>
-      <% else %>
-        <%= button_to 'Unlike', likes_url, method: 'delete', params: { post_id: post.id } %>
-      <% end %>
-      <p><strong>Likes count:</strong><%= post.likes.count %></p>
+<div id="<%= dom_id post %>" class='container show_post recommended_container p-1'>
+  <div class='row text-center'>
+    <div class="col">
+      <%= video_tag url_for(post.video), controls: true, style: "width: 70%" %>
+      <div class="row">
+        <% if post.likes.find_by(user_id: current_user.id) %>
+          <div class="col liked">
+            <%= button_to likes_url, method: 'delete', params: { post_id: post.id }, class: 'p-2 bg-white' do %>
+              <strong>Like</strong>
+            <% end %>
+            <p>Likes count: (<%= post.likes.count %>)</p>
+          </div>
+        <% else %>
+          <div class="col not_liked">
+            <%= button_to likes_url, method: 'post', params: { post_id: post.id }, class: 'p-2 bg-white' do %>
+              <strong>Like</strong>
+            <% end %>
+            <p>Likes count: (<%= post.likes.count %>)</p>
+          </div>
+        <% end %>
+        <div class='col'>
+          <p>
+          <strong>Title:</strong> <%= post.title %>
+          </p>
+          <p>
+          <strong>Description:</strong> <%= post.description %>
+          </p>
+        </div>
       </div>
     </div>
-    
-    <div id='comments'>
-      <strong>Comments:</strong>
-      <% post.comments.order(created_at: :desc).each do |comment| %>
-        <div class='comment'>
-          <p><%= comment.body %></p>
-          <p><strong>commented by:</strong> <%= comment.user.full_name %></p>
-          <p><strong>commented on:</strong> <%= comment.created_at %></p>
+    <div class="col-3 recommended_container">
+      <h2>Recommended Videos</h2>
+      <% 3.times do %>
+        <div>
+          <%= video_tag url_for(post.video), controls: true, style: "width: 50%" %>
+          <p>
+          <strong>title:</strong>
+          <%= link_to post.title, post_url(post) %>
+          </p>
         </div>
       <% end %>
     </div>
-
-    <div>
-      <strong>Write a comment:</strong>
-      <%= form_with url: post_comments_url(@post), class: 'form comment_form' do |f| %>
-        <div class="field">
-          <%= f.label :body, 'New Comment' %>
-          <%= f.text_field :body %>
-        </div>
-    
-        <div class="field">
-          <%= f.submit %>
-        </div>
-      <% end %>
-    </div>
-    
   </div>
+
+  <div class="row text-center">
+    <div class='col comment_form'>
+      <strong>Write a comment:</strong>
+      <%= form_with url: post_comments_url(@post), class: 'p-3' do |f| %>
+        <div class="field">
+          <%= f.text_area :body, style: "height: 155px" %>
+        </div>
+        <div class="field">
+          <%= f.submit "Save Comment", class: 'btn btn-primary btn-lg my-1' %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+
+  <ul class="row list-group p-2">
+    <div class="col all_comments">
+      <% post.comments.each do |comment| %>
+        <li class='list-group-item border-bottom border-primary'>
+          <p>
+          <strong>By:</strong> 
+          <%= comment.user.full_name %>
+          <small class="text-muted"><%= comment.created_at %></small>
+          </p>
+          <%= comment.body %>
+        </li>
+      <% end %>
+    </div>
+  </ul>
 </div>

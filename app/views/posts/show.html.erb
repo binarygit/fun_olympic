@@ -3,10 +3,10 @@
 <%= render @post %>
 
 <% if current_user.admin %>
-  <div class='misc_links'>
+  <div class='misc_links container p-3 border-top'>
     <%= link_to "Edit this post", edit_post_path(@post) %> |
     <%= link_to "Back to posts", posts_path %>
 
-    <%= button_to "Destroy this post", @post, method: :delete %>
+    <%= button_to "Destroy this post", @post, method: :delete, class: 'btn btn-danger' %>
   </div>
 <% end %>

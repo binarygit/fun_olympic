@@ -18,7 +18,7 @@
     <% end %>
   </div>
 
-  <div id="recommended_posts" class="row my-5">
+  <div id="recommended_posts" class="row my-5 trending">
     <h2>Recommended Videos</h2>
     <% @posts.each do |post| %>
       <div id="<%= dom_id post %>" class='post col mx-5 p-2'>
@@ -35,7 +35,7 @@
     <% end %>
   </div>
 
-  <div id="recent_posts" class="row my-5">
+  <div id="recent_posts" class="row my-5 recently_watched">
     <h2>Recently Watched Videos</h2>
     <% @posts.each do |post| %>
       <div id="<%= dom_id post %>" class='post col mx-5 p-2'>

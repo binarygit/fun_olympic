@@ -154,15 +154,77 @@ body.dark-theme a {
 
 .form {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background: white;
+}
+
+.comment_form {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background: rgb(228,218,233);
 }
 
 .footer {
-  position: fixed;
-  bottom: 0;
+  height: 30px;
   width: 100%;
 }
 
 .post {
+  background: #e7ac3f;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background: rgb(228,218,233);
 }
 
+.liked {
+  color: blue;
+
+  a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px;
+  }
+
+  strong {
+    color: blue;
+  }
+
+  strong::after {
+    display: inline-block;
+    content: url('blue-like');
+    width: 20px;
+    margin-left: 2px;
+  }
+}
+
+
+.not_liked {
+  strong::after {
+    display: inline-block;
+    content: url('like');
+    width: 20px;
+    margin-left: 2px;
+  }
+}
+
+.all_comments {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+#main{
+  min-height:calc(100vh - 60px);
+}
+#footer{
+  height:30px;
+}
+
+body {
+  background: #85a9ee !important;
+}
+
+nav {
+  background: #d29a30 !important;
+}
+
+.recommended_container {
+  background: white;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
