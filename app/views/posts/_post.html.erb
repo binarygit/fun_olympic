@@ -2,21 +2,51 @@
   <div class="video_container">
     <%= video_tag url_for(post.video), controls: true %>
   </div>
-  <p>
-    <strong>Title:</strong>
-    <%= post.title %>
-  </p>
-  <p>
-    <strong>Description:</strong>
-    <%= post.description %>
-  </p>
+  <div class="misc_container">
+    <div>
+      <p>
+        <strong>Title:</strong>
+        <%= post.title %>
+      </p>
+      <p>
+        <strong>Description:</strong>
+        <%= post.description %>
+      </p>
+      
+      <div>
+        <% if post.likes.where(user_id: current_user.id).empty? %>
+        <%= button_to 'Like', likes_url, method: 'post', params: { post_id: post.id } %>
+      <% else %>
+        <%= button_to 'Unlike', likes_url, method: 'delete', params: { post_id: post.id } %>
+      <% end %>
+      <p><strong>Likes count:</strong><%= post.likes.count %></p>
+      </div>
+    </div>
+    
+    <div id='comments'>
+      <strong>Comments:</strong>
+      <% post.comments.order(created_at: :desc).each do |comment| %>
+        <div class='comment'>
+          <p><%= comment.body %></p>
+          <p><strong>commented by:</strong> <%= comment.user.full_name %></p>
+          <p><strong>commented on:</strong> <%= comment.created_at %></p>
+        </div>
+      <% end %>
+    </div>
 
-  <div>
-    <% if post.likes.where(user_id: current_user.id).empty? %>
-    <%= button_to 'Like', likes_url, method: 'post', params: { post_id: post.id } %>
-  <% else %>
-    <%= button_to 'Unlike', likes_url, method: 'delete', params: { post_id: post.id } %>
-  <% end %>
-  <p><strong>Likes count:</strong> <%= post.likes.count %></p>
+    <div>
+      <strong>Write a comment:</strong>
+      <%= form_with url: post_comments_url(@post), class: 'form comment_form' do |f| %>
+        <div class="field">
+          <%= f.label :body, 'New Comment' %>
+          <%= f.text_field :body %>
+        </div>
+    
+        <div class="field">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </div>
+    
   </div>
 </div>
