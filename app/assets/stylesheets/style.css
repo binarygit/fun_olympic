@@ -82,3 +82,19 @@ nav ul li {
   padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
+.show_post {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  padding: 20px;
+}
+
+.video_container {
+  margin: 0 auto;
+  width: 50%;
+  background: red;
+}
+
+.video_container video {
+  margin: 0 auto;
+  width: 100%;
+}

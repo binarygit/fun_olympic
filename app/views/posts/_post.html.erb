@@ -1,22 +1,13 @@
-<div id="<%= dom_id post %>">
+<div id="<%= dom_id post %>" class='show_post'>
+  <div class="video_container">
+    <%= video_tag url_for(post.video), controls: true %>
+  </div>
   <p>
-  <strong>Title:</strong>
-  <%= post.title %>
+    <strong>Title:</strong>
+    <%= post.title %>
   </p>
-
   <p>
-  <strong>Description:</strong>
-  <%= post.description %>
+    <strong>Description:</strong>
+    <%= post.description %>
   </p>
-
-  <p>
-  <strong>Author:</strong>
-  <%= post.user.email %>
-  </p>
-
-  <p>
-  <strong>Video:</strong>
-  <%= video_tag url_for(post.video), controls: true %>
-  </p>
-
 </div>
