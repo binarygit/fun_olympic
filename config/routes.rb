@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   get '/home', to: 'static_pages#home'
+  get '/settings', to: 'static_pages#settings'
 
   root 'static_pages#home'
 end
