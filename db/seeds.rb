@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-file = File.open("/home/kali/Downloads/text")
+file = File.open("./countries")
 file_data = file.readlines.map(&:chomp)
 file_data.each do |country|
   Country.create!(name: country)
