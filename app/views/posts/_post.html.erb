@@ -30,7 +30,7 @@
     </div>
     <div class="col-3 recommended_container">
       <h2>Recommended Videos</h2>
-      <% 3.times do %>
+      <% Post.where(recommended: true).each do |post| %>
         <div>
           <%= video_tag url_for(post.video), controls: true, style: "width: 50%" %>
           <p>

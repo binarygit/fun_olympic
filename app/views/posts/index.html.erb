@@ -3,10 +3,11 @@
   
   <div id="trending_posts" class="row my-5">
     <h2>Trending Videos</h2>
-    <% @posts.each do |post| %>
+    <% @posts.where(trending: true).each do |post| %>
       <div id="<%= dom_id post %>" class='post col mx-5 p-2'>
         <%= video_tag url_for(post.video), controls: true, size: "300x100" %>
         <p><strong>Posted by:</strong> <%= post.user.email %></p>
+        <p><strong>Title:</strong> <%= post.title %></p>
         <p>
           <%= link_to "Likes(#{post.likes.count})", post_path(post) %>
         </p>
@@ -20,10 +21,11 @@
 
   <div id="recommended_posts" class="row my-5 trending">
     <h2>Recommended Videos</h2>
-    <% @posts.each do |post| %>
+    <% @posts.where(recommended: true).each do |post| %>
       <div id="<%= dom_id post %>" class='post col mx-5 p-2'>
         <%= video_tag url_for(post.video), controls: true, size: "300x100" %>
         <p><strong>Posted by:</strong> <%= post.user.email %></p>
+        <p><strong>Title:</strong> <%= post.title %></p>
         <p>
           <%= link_to "Likes(#{post.likes.count})", post_path(post) %>
         </p>
@@ -37,10 +39,11 @@
 
   <div id="recent_posts" class="row my-5 recently_watched">
     <h2>Recently Watched Videos</h2>
-    <% @posts.each do |post| %>
+    <% @posts.where(recently_watched: true).each do |post| %>
       <div id="<%= dom_id post %>" class='post col mx-5 p-2'>
         <%= video_tag url_for(post.video), controls: true, size: "300x100" %>
         <p><strong>Posted by:</strong> <%= post.user.email %></p>
+        <p><strong>Title:</strong> <%= post.title %></p>
         <p>
           <%= link_to "Likes(#{post.likes.count})", post_path(post) %>
         </p>
