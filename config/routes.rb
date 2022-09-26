@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :likes, only: [:create]
   delete '/likes', to: 'likes#destroy'
+  post '/search', to: 'searches#create'
 
 
   devise_for :users
